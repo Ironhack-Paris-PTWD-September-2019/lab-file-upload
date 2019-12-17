@@ -1,0 +1,21 @@
+<form action="/posts" method="post" enctype="multipart/form-data">
+  <p>
+    <label>
+      Content:
+      <input type="text" name="content">
+    </label>
+  </p>
+
+  <p>
+    <label>
+      Post Pic:
+      <input type="file" name="postpic">
+    </label>
+  </p>
+
+  {{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+  {{/if}}
+
+  <button type="submit">Save Post</button>
+</form>
