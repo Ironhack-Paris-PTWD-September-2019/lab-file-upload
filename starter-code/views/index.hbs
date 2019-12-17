@@ -9,3 +9,13 @@
   <a href="/logout">Logout</a>
 </p>
 {{/unless}}
+
+<div>
+  {{#each posts}}
+      <img src="{{picPath}}" alt>
+      <h4>{{content}}</h4>
+      <p>{{creatorId}}</p>
+  {{else}}
+    <p>There are no movies yet! :(</p>
+  {{/each}}
+</div>

@@ -1,0 +1,13 @@
+<h2>Upload a new Post</h2>
+<form action="/posts/new" method="post" enctype="multipart/form-data">
+  <label>Content</label>
+  <input type="text" name="content">
+
+  <label>CreatorId</label>
+  <input type="text" name="creatorId" value={{user.username}}>
+
+  <label>Picture</label>
+  <input type="file" name="photo">
+
+  <input type="submit" value="SAVE">
+</form>
