@@ -9,3 +9,10 @@
   <a href="/logout">Logout</a>
 </p>
 {{/unless}}
+
+<h2>List of posts : </h2>
+<a href="/posts/new">Create new post</a>
+{{#each posts}}
+<p>{{content}}</p>
+<a href="/posts/{{_id}}">see more</a>
+{{/each}}

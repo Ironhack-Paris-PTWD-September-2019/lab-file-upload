@@ -17,8 +17,13 @@ router.post("/signup",  uploadCloud.single("profilepic"), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email=req.body.email; 
-  const imgPath=req.file.url;
-  const imgName= req.file.originalname;
+  let imgPath="";
+  let imgName= "";
+ 
+  if(req.file) {
+    imgPath=req.file.url;
+    imgName= req.file.originalname;
+  } 
 
   // 1. Check username and password are not empty
   if (username === "" || password === "") {
@@ -44,6 +49,7 @@ router.post("/signup",  uploadCloud.single("profilepic"), (req, res, next) => {
 
       const newUser = new User({
         username,
+        email,
         password: hashPass,
         imgName,
         imgPath,
