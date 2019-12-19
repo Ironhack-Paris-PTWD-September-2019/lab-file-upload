@@ -7,6 +7,7 @@ const bodyParser         = require('body-parser');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
+const Post               = require('./models/post');
 const bcrypt             = require('bcryptjs');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
@@ -73,10 +74,14 @@ passport.use(new LocalStrategy(
   }
 ));
 
-const index = require('./routes/index');
-const authRoutes = require('./routes/authentication');
+const index = require('./routes/index.js');
 app.use('/', index);
-app.use('/', authRoutes);
+
+const authRouter = require('./routes/authentication.js');
+app.use('/', authRouter);
+
+const postRouter = require('./routes/posts.js');
+app.use('/', postRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

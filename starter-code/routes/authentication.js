@@ -3,13 +3,14 @@ const router = express.Router();
 
 const passport = require('passport');
 const User = require('../models/user.js');
+const Post = require('../models/post.js');
 const uploadCloud = require('../config/cloudinary.js'); 
 
 const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
 
 
-
+// Signup routes
 router.get('/signup', (req, res) => {
   res.render('authentication/signup', { message: req.flash('error')});
 });
@@ -68,6 +69,9 @@ router.post('/signup', uploadCloud.single('photo'), (req, res, next) => {
   ;
 });
 
+
+
+// Login routes
 router.get('/login', (req, res) => {
   res.render('authentication/login', { message: req.flash('error')});
 });
@@ -78,6 +82,9 @@ router.post('/login', passport.authenticate('local', {
   failureFlash : true
 }));
 
+
+
+// Logout route
 router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
