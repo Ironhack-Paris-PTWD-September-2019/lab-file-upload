@@ -1,0 +1,12 @@
+<h1>Welcome to the Post</h1>
+<div>
+  {{#each post}}
+    <div>
+      <img src="{{picPath}}">
+      <h4>{{picName}}</h4>
+      <p>{{content}}</p>
+    </div>
+  {{else}}
+    <p>There are no post yet! :(</p>
+  {{/each}}
+</div>

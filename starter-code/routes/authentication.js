@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const uploadCloud = require('../config/cloudinary.js');
+
 const passport = require('passport');
 const User = require('../models/user.js');
 
@@ -11,7 +13,7 @@ router.get('/signup', (req, res) => {
   res.render('authentication/signup', { message: req.flash('error')});
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
