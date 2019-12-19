@@ -1,19 +1,23 @@
 const express = require('express');
 const router = express.Router();
-
+const uploadCloud = require('../cloudinary.js');
 const passport = require('passport');
 const User = require('../models/user.js');
-
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
+
 
 router.get('/signup', (req, res) => {
   res.render('authentication/signup', { message: req.flash('error')});
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", uploadCloud.single('picture'), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  //const picture = req.file.url;
+  const email = req.body.email;
+
+  console.log(req.file)
 
   // 1. Check username and password are not empty
   if (username === "" || password === "") {
@@ -39,7 +43,9 @@ router.post("/signup", (req, res, next) => {
 
       const newUser = new User({
         username,
+        email,
         password: hashPass
+        //picture
       });
 
       newUser.save()
@@ -73,5 +79,7 @@ router.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
 });
+
+
 
 module.exports = router;

@@ -1,11 +1,11 @@
 <h1>Welcome {{user.username}} to IronTumblr</h1>
 
 {{#unless user}}
-<p>
-  <a href="/signup">Signup</a> or <a href="/login">Login</a>
-</p>
+<p> <a href="/signup">Signup</a> or <a href="/login">Login</a></p>
 {{else}}
-<p>
-  <a href="/logout">Logout</a>
-</p>
+<p><a href="/posts/new">Create post</a></p>
+
+<p><a href="/logout">Logout</a></p>
 {{/unless}}
+
+(post content to come here)
