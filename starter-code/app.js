@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -7,12 +9,13 @@ const bodyParser         = require('body-parser');
 const passport           = require('passport');
 const LocalStrategy      = require('passport-local').Strategy;
 const User               = require('./models/user');
-const bcrypt             = require('bcrypt');
+const bcrypt             = require('bcryptjs');
 const session            = require('express-session');
 const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
+
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -75,8 +78,10 @@ passport.use(new LocalStrategy(
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
-app.use('/', index);
-app.use('/', authRoutes);
+const newPost = require('./routes/post');
+app.use('/posts', index);
+app.use('/login', authRoutes);
+app.use('/new', newPost);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
