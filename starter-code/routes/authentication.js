@@ -14,7 +14,7 @@ router.get('/signup', (req, res) => {
   res.render('authentication/signup', { message: req.flash('error')});
 });
 
-router.post("/signup", uploadCloud.single('photo'), (req, res, next) => {
+router.post('/signup', uploadCloud.single('photo'), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
