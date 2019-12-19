@@ -1,0 +1,29 @@
+<form action="/posts/new" method="post" enctype="multipart/form-data">
+  <p>
+    <label for="content">
+    Post content:
+    </label>
+    <br>
+    <textarea name="content" cols="40" rows="5"></textarea>
+  </p>
+
+  <p>
+    <label>
+      Upload picture:
+      <input type="file" name="picture">
+    </label>
+  </p>
+
+ <p>
+    <label>
+      Add Legend
+      <input type="text" name="picName">
+    </label>
+  </p>
+
+  {{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+  {{/if}}
+
+  <button type="submit">Signup</button>
+</form>
