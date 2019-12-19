@@ -1,0 +1,23 @@
+<h1>Welcome {{user.username}} to IronTumblr posts page</h1>
+ <img src="{{user.picPath}}">
+<p>
+    {{post.content}}
+</p>
+<p>
+    {{post.authorId}}
+</p>
+<p>
+    {{post.picPath}}
+</p>
+<p>
+    {{post.picName}}
+</p>
+{{#unless user}}
+<p>
+  <a href="/signup">Signup</a> or <a href="/login">Login</a>
+</p>
+{{else}}
+<p>
+  <a href="/logout">Logout</a>
+</p>
+{{/unless}}

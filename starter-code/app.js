@@ -80,7 +80,7 @@ const authRoutes = require('./routes/authentication');
 const postRouter= require ('./routes/posts'); 
 app.use('/', index);
 app.use('/', authRoutes);
-app.use ('/',postRouter)
+app.use ('/posts',postRouter)
 // routes index de post, 
 
 

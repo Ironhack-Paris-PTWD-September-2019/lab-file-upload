@@ -1,16 +1,16 @@
 <h2>Upload a new Post</h2>
-<form action="/post/add" method="post" enctype="multipart/form-data">
-  <label>Content</label>
-  <input type="text" name="content">
+<form action="/posts" method="post" enctype="multipart/form-data">
+  <p><label>Content</label>
+  <input type="text" name="content"></p>
 
-  <label>authorId</label>
-  <input type="text" name="authorId">
+  <p><label>authorId</label>
+  <input type="text" name="authorId"></p>
 
-  <label>picPath</label>
-  <input type="file" name="photo">
+  <p><label>picPath</label>
+  <input type="file" name="photo"></p>
 
-  <label>picName</label>
-  <input type="text" name="picName">
+  <p><label>picName</label>
+  <input type="text" name="picName"></p>
 
   <input type="submit" value="SAVE">
 </form>
