@@ -1,0 +1,19 @@
+<p>{{post.creatorId.username}}</p>
+<img src="{{post.picPath}}" alt>
+
+{{#each post.comment}}
+<p>{{this.content}}</p>
+<img src="{{this.imagePath}}">
+{{/each}}
+
+<form action="/posts/show/{{post._id}}/comment" method="post" enctype="multipart/form-data">
+    <label>Comment Content</label>
+    <input type="text" name="content">
+
+    <label>Comment Photo</label>
+    <input type="file" name="commentPhoto">
+
+    <input type="submit" value="SAVE">
+</form>
+
+<a href="/">Back to home</a>
