@@ -24,12 +24,9 @@ router.post('/posts',uploadCloud.single("postpic"), (req,res,next)=>{
 
   const creatorId=req.user.id;
   const content=req.body.content;
-  let picPath="";
-  let picName= "";
-  if(req.file){
-    picPath=req.file.url;
-    picName= req.file.originalname;
-  }
+  let picPath=req.file && req.file.url || "";
+  let picName= req.file && req.file.originalname || "";
+
 
   const newPost= new Post ({
   content,
@@ -40,7 +37,8 @@ router.post('/posts',uploadCloud.single("postpic"), (req,res,next)=>{
 
   newPost.save()
     .then(post=>{
-      res.render('posts/show', {post});
+      post.creatorId=req.user; 
+      res.render('posts/show', {post:post});
     })
     .catch(err=>{
       console.error(err);
@@ -49,6 +47,9 @@ router.post('/posts',uploadCloud.single("postpic"), (req,res,next)=>{
 
 });
 
+router.get('/posts', (req,res,next)=>{
+  res.redirect('/');
+});
 
 router.get('/posts/:id', (req,res,next)=>{
   const postId= req.params.id;
@@ -87,12 +88,9 @@ router.post('/posts/:id/comments', uploadCloud.single("commentImg"), (req,res,ne
   console.log(postId);
   const authorId=req.user.id;
   const content=req.body.contentComment;
-  let imagePath="";
-  let imageName= "";
-  if(req.file){
-    imagePath=req.file.url;
-    imageName= req.file.originalname;
-  }
+  let imagePath=req.file && req.file.url || "";
+  let imageName=req.file && req.file.originalname || "";
+ 
 
   Post.findById({_id:postId}).populate('creatorId').then(post=>{
     console.log("post found");
