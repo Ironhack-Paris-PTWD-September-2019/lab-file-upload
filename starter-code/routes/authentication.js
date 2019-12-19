@@ -1,19 +1,24 @@
+const uploadCloud = require('../config/cloudinary.js');
+
 const express = require('express');
 const router = express.Router();
 
 const passport = require('passport');
 const User = require('../models/user.js');
 
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const bcryptSalt = 10;
+
 
 router.get('/signup', (req, res) => {
   res.render('authentication/signup', { message: req.flash('error')});
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  const imgName = req.file.originalname;
+  const imgPath = req.file.url;
 
   // 1. Check username and password are not empty
   if (username === "" || password === "") {
@@ -39,7 +44,9 @@ router.post("/signup", (req, res, next) => {
 
       const newUser = new User({
         username,
-        password: hashPass
+        password: hashPass,
+        imgName: req.file.originalname,
+        imgPath: req.file.url
       });
 
       newUser.save()
