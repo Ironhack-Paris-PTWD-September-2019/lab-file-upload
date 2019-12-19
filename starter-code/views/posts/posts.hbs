@@ -1,0 +1,10 @@
+<div>
+  {{#each posts}}
+      <h4>{{content}}</h4>
+      <a href="/posts/show/{{this._id}}">See more</a>    
+  {{else}}
+    <p>There are no posts yet! :(</p>
+  {{/each}}
+</div>
+
+<a href="/">Back to home</a>
