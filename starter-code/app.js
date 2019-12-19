@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express            = require('express');
 const path               = require('path');
 const favicon            = require('serve-favicon');
@@ -75,8 +77,14 @@ passport.use(new LocalStrategy(
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRouter= require ('./routes/posts'); 
 app.use('/', index);
 app.use('/', authRoutes);
+app.use ('/',postRouter)
+// routes index de post, 
+
+
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
