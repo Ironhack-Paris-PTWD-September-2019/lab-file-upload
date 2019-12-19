@@ -37,6 +37,7 @@ router.post('/posts',uploadCloud.single("postpic"), (req,res,next)=>{
 
   newPost.save()
     .then(post=>{
+      //filling user name in Post 
       post.creatorId=req.user; 
       res.render('posts/show', {post:post});
     })
