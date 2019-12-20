@@ -77,11 +77,11 @@ passport.use(new LocalStrategy(
 const index = require('./routes/index.js');
 app.use('/', index);
 
-const authRouter = require('./routes/authentication.js');
-app.use('/', authRouter);
+const authRouter = require('./routes/authentication.js'); 
+app.use('/', authRouter); //app.use('/authenication', authRouter)
 
 const postRouter = require('./routes/posts.js');
-app.use('/', postRouter);
+app.use('/', postRouter); //app.use('/posts', postRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

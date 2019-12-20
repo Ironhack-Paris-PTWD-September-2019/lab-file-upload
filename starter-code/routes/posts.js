@@ -7,7 +7,7 @@ const Post = require('../models/post.js');
 const uploadCloud = require('../config/cloudinary.js'); 
 
 
-// New-post routes - private!!!
+// New routes - New post is private!!!
 router.get("/new", (req, res, next) => {
   if (!req.user) {
     res.redirect('authentication/login'); // not logged-in
@@ -22,29 +22,25 @@ router.post("/", uploadCloud.single('photo'), (req, res, next) => {
   const picPath = req.file.url;
   const picName = req.file.originalname;
   
-  if (req.user) {
-    const newPost = new Post ({
+  const post = new Post ({
     content,
     creatorId,
     picPath,
     picName
-    });
+  });
 
-    return newPost;
-
-  }
-
-  newPost.save()
-  .then(post => {
-    res.redirect('/'); 
-  })
-  .catch(err => {
-    next(err);
-  })
+  post.save()
+    .then(post => {
+      console.log("Post created");
+      res.redirect('posts/index'); 
+    })
+    .catch(err => {
+      res.render('posts/index');
+  });
 });
 
 
-// Home - list all posts routes
+// Index route - list all posts 
 router.get('/index', (req, res, next) => {
   Post.find()
   .then(allThePostsFromDB => {
@@ -53,7 +49,8 @@ router.get('/index', (req, res, next) => {
   .catch(err => { res.redirect('/')});
 });
 
-// Show-post route
+
+// Show route - show one selected post
 router.get('/:id', (req, res, next) => {
   Post.findOne({_id: req.params.id})
   .populate('creatorId')
