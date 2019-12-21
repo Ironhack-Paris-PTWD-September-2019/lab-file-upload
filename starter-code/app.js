@@ -13,6 +13,7 @@ const MongoStore         = require('connect-mongo')(session);
 const mongoose           = require('mongoose');
 const flash              = require('connect-flash');
 const hbs                = require('hbs')
+require('dotenv').config()
 
 mongoose.connect('mongodb://localhost:27017/tumblr-lab-development');
 
@@ -75,8 +76,13 @@ passport.use(new LocalStrategy(
 
 const index = require('./routes/index');
 const authRoutes = require('./routes/authentication');
+const postRoute = require('./routes/posts')
+const commentsRoute = require('./routes/comments')
+
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/posts', postRoute);
+app.use('/comments' , commentsRoute)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
