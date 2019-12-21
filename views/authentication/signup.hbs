@@ -1,4 +1,4 @@
-<form action="/signup" method="post">
+<form action="/signup" method="post" enctype="multipart/form-data">
   <p>
     <label>
       Username:
@@ -17,6 +17,13 @@
     <label>
       Password:
       <input type="password" name="password">
+    </label>
+  </p>
+
+  <p>
+    <label>
+      Profile Pic:
+      <input type="file" name="profilepic">
     </label>
   </p>
 

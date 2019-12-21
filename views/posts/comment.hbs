@@ -1,0 +1,23 @@
+
+<h1>New Comment</h1>
+<form action="/posts/{{post._id}}/comments" method="post" enctype="multipart/form-data">
+  <p>
+    <label>
+      Content:
+      <input type="text" name="contentComment">
+    </label>
+  </p>
+
+  <p>
+    <label>
+      Comment Image:
+      <input type="file" name="commentImg">
+    </label>
+  </p>
+
+  {{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+  {{/if}}
+
+  <button type="submit">Save Comment</button>
+</form>

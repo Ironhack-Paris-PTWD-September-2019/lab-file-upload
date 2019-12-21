@@ -1,0 +1,19 @@
+<h1>You are looking at post from {{post.creatorId.username}} </h1>
+<p>Created on {{post.createdAt}}</p>
+<div class="post-wrapper">
+  <h2>Post content : </h2>
+  <p>{{post.content}}</p>
+  <h2>Post pic : </h2>
+  <img src="{{post.picPath}}">
+</div>
+<a href="/posts/{{post._id}}/comments">Add new comment</a>
+
+{{#each post.comments}}
+<div class='comment-wrapper'>
+  <h3>Comment content : </h3>
+  <p>{{content}}</p>
+  <img src="{{imagePath}}">
+</div>
+{{else}}
+<p>There are no comments yet!</p>
+{{/each}}
