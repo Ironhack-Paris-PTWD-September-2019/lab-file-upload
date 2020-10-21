@@ -1,0 +1,7 @@
+<h1>List of Posts</h1>
+
+<ol id="list-posts">
+    {{#each posts}}
+        <li><a href="/{{this._id}}">{{this.content}}</a></li>
+    {{/each}}
+</ol>

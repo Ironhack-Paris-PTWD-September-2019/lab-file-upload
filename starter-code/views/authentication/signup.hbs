@@ -1,4 +1,4 @@
-<form action="/signup" method="post">
+<form action="/signup" method="post" enctype="multipart/form-data">
   <p>
     <label>
       Username:
@@ -20,9 +20,18 @@
     </label>
   </p>
 
+  <p>
+    <label>
+      Upload a Photo:
+      <input type="file" name="photo">
+    </label>
+  </p>
+
   {{#if errorMessage}}
   <div class="error-message">{{errorMessage}}</div>
   {{/if}}
 
   <button type="submit">Signup</button>
 </form>
+
+<a href="/">Home</a>
