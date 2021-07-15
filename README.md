@@ -6,9 +6,9 @@
 - [Fork this repo](https://guides.github.com/activities/forking/)
 - Clone this repo into your `~/code/labs`
 
-## Submission
+## Submission 
 
-Upon completion, run the following commands
+Upon completion, run the following commands please : 
 
 ```
 $ git add .
